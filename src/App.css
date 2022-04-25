@@ -1,8 +1,4 @@
-.App {
-  text-align: center;
-  background-color: #ffcccb;
-  width: 300px;
-  border: 15px black;
-  margin: auto;
-;
+* {
+  margin: 0;
+  padding: 0;
 }
