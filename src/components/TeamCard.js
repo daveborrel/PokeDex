@@ -1,6 +1,5 @@
 import { Card, CardContent } from "@mui/material"
 import { Typography } from "@mui/material"
-import { useState } from "react"
 
 // Represents the card to which the team appears on the web-application.
 export default function TeamCard(prop) {
@@ -13,7 +12,7 @@ export default function TeamCard(prop) {
                     Team
             </Typography>
             {prop.team.map(n => (
-                <Typography>{n}</Typography>
+                <Typography key={n}>{n}</Typography>
             ))}
             </CardContent>
         </Card>
