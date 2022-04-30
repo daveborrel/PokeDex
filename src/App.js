@@ -48,7 +48,10 @@ function App() {
         <NavigationBar />
         <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center" style={{ minHeight: '100vh' }}>
           <Grid item xs={3}>
-            <SearchBar />
+            <SearchBar
+              // You can pass a function into a child component to update it.
+              function={setCurrentPokemon}
+            />
             <Stack spacing={2} direction='row'>
               <Card variant='outlined'>
                 <CardContent>
