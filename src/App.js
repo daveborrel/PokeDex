@@ -12,8 +12,8 @@ import SearchBar from './components/SearchBar';
 
 // Represents the main application.
 function App() {
-  const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [errorState, setErrorState] = useState(false)
   const [sprite, setSprite] = useState('')
   const [name, setName] = useState('')
   const [types, setTypes] = useState([])
@@ -40,12 +40,12 @@ function App() {
         }).catch((error) => {
           setCurrentPokemon(1)
           console.log(error) // Modified the structure of the API call in order to catch errors, without stopping web-app.
+          setErrorState(true)
+          console.log('changed error state')
         })
   }, [currentPokemon, team])
 
-  if (error) {
-    return <div>Error: {error.message}</div>
-  } else if (!isLoaded) {
+  if (!isLoaded) {
     return <div>Loading...</div>
   } else {
     return (
@@ -55,6 +55,8 @@ function App() {
           <Grid item xs={3}>
             <SearchBar
               // You can pass a function into a child component to update state within it.
+              error={errorState}
+              errorFunction={setErrorState}
               function={setCurrentPokemon}
             />
             <Stack spacing={2} direction='row'>

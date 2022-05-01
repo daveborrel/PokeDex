@@ -9,12 +9,8 @@ export default function SearchBar(props) {
         // If string, turns it to lowercase.
         let pokemonName = document.getElementById('searchButtonInput').value.toLowerCase()
 
-        // If there is an error, do nothing, and print out error message.
-        try {
-            props.function(pokemonName)
-        } catch (error) {
-            console.error('Error Caught In Search Bar')
-        }
+        props.function(pokemonName)
+        props.errorFunction(false)
     }
 
     return (
@@ -24,6 +20,7 @@ export default function SearchBar(props) {
                 label="Search"
                 variant="filled"
                 fullWidth
+                error={props.error}
             />
         </form>
     )
