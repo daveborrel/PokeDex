@@ -13,7 +13,7 @@ export default function TeamCard(prop) {
                     Team
                 </Typography>
                 {prop.team.map(n => (
-                    <Stack spacing={2} direction='row'>
+                    <Stack spacing={2} direction='row' key={n}>
                         <Typography key={n}>{n}</Typography>
                     </Stack>
                 ))}

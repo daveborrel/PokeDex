@@ -2,14 +2,24 @@ import { TextField } from "@mui/material"
 
 export default function SearchBar(props) {
 
-    // Typing in the field will already search the pokemon. 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        // If string, turns it to lowercase.
-        let pokemonName = document.getElementById('searchButtonInput').value.toLowerCase()
+        let value = document.getElementById('searchButtonInput').value
+        let number = 0
 
-        props.function(pokemonName)
+        console.log('result of isNaN(value) is : ' + isNaN(value))
+        
+        // Check if string or integer.
+        if (isNaN(value)) {
+            console.log('Non-Integer Entered')
+            value.toLowerCase()
+            props.function(value)
+        } else {
+            number = parseInt(value)
+            props.function(number)
+        }
+
         props.errorFunction(false)
     }
 

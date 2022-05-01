@@ -22,7 +22,6 @@ function App() {
   const [sprite, setSprite] = useState('')
 
   useEffect(() => {
-    console.log('Pokemon API Called.')
     fetch(`https://pokeapi.co/api/v2/pokemon/${currentPokemon}`)
       .then((response) => {
         if (response.status >= 200 & response.status <= 299) {
@@ -39,11 +38,11 @@ function App() {
           setSprite(result.sprites.front_default)
           setTypes(result.types)
           setName(capitalizeString(result.species.name))
+          console.log('PokemonAPI called with: ' + currentPokemon)
         }).catch((error) => {
           setCurrentPokemon(1)
           console.log(error) // Modified the structure of the API call in order to catch errors, without stopping web-app.
           setErrorState(true)
-          console.log('changed error state')
         })
   }, [currentPokemon, team])
 
@@ -87,16 +86,18 @@ function App() {
           <Grid>
             <Stack spacing={2} direction='row'>
               <Button onClick={() => {
-                let curr = currentPokemon;
-                let temp = curr - 1;
+                let temp = currentPokemon - 1;
+                console.log('temp is: ' + temp)
                 if (temp === 0) {
                   setCurrentPokemon(1);
+                  console.log(currentPokemon)
                 } else {
                   setCurrentPokemon(temp);
+                  console.log(currentPokemon)
                 }
               }}
                 variant="contained">Previous</Button>
-              <Button onClick={() => { //Maybe turn this into a hash map?
+              <Button onClick={() => {
                 const newTeam = team
                 var isIncluded = newTeam.includes(name)
                 var underSix = newTeam.length < 6
@@ -109,18 +110,19 @@ function App() {
               }}
                 variant='contained'>Add to Team</Button>
               <Button onClick={() => {
-                let curr = currentPokemon;
-                let temp = curr + 1;
+                let temp = currentPokemon + 1
+
+                console.log('Incremented value is: ' + temp)
+                
                 if (temp > 898) {
-                  setCurrentPokemon(898);
+                  setCurrentPokemon(898)
                 } else {
-                  setCurrentPokemon(temp);
+                  setCurrentPokemon(temp)
                 }
               }}
                 variant="contained">Next</Button>
             </Stack>
           </Grid>
-
         </Grid>
       </Container>
     );
