@@ -21,8 +21,15 @@ function App() {
   const [team, setTeam] = useState([])
 
   useEffect(() => {
-    console.log('useEffect ran')
+    console.log('Pokemon API Called.')
     fetch(`https://pokeapi.co/api/v2/pokemon/${currentPokemon}`)
+      .then((response) => {
+        if (response.status >= 200 & response.status <= 299) {
+          return response
+        } else {
+          throw Error(response.statusText)
+        }
+      })
       .then(res => res.json())
       .then(
         (result) => {
@@ -30,12 +37,10 @@ function App() {
           setSprite(result.sprites.front_default);
           setName(capitalizeString(result.species.name));
           setTypes(result.types);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+        }).catch((error) => {
+          setCurrentPokemon(1)
+          console.log(error) // Modified the structure of the API call in order to catch errors, without stopping web-app.
+        })
   }, [currentPokemon, team])
 
   if (error) {
@@ -49,7 +54,7 @@ function App() {
         <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center" style={{ minHeight: '100vh' }}>
           <Grid item xs={3}>
             <SearchBar
-              // You can pass a function into a child component to update it.
+              // You can pass a function into a child component to update state within it.
               function={setCurrentPokemon}
             />
             <Stack spacing={2} direction='row'>
