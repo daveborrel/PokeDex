@@ -1,5 +1,6 @@
-import { Card, CardContent } from "@mui/material"
+import { Card, CardContent, CardMedia } from "@mui/material"
 import { Typography } from "@mui/material"
+import { Stack } from "@mui/material"
 
 // Represents the card to which the team appears on the web-application.
 export default function TeamCard(prop) {
@@ -8,12 +9,15 @@ export default function TeamCard(prop) {
     return (
         <Card variant="outlined">
             <CardContent>
-            <Typography gutterBottom variant="h5" component="div" align='center'>
+                <Typography gutterBottom variant="h5" component="div" align='center'>
                     Team
-            </Typography>
-            {prop.team.map(n => (
-                <Typography key={n}>{n}</Typography>
-            ))}
+                </Typography>
+                {prop.team.map(n => (
+                    <Stack spacing={2} direction='row'>
+                        <Typography key={n}>{n}</Typography>
+                    </Stack>
+                ))}
+                <CardMedia component="img" height="50" image={prop.sprite} alt="Loading" />
             </CardContent>
         </Card>
     )

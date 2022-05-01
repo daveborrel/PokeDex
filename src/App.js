@@ -14,11 +14,12 @@ import SearchBar from './components/SearchBar';
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [errorState, setErrorState] = useState(false)
-  const [sprite, setSprite] = useState('')
+  const [image, setImage] = useState('')
   const [name, setName] = useState('')
   const [types, setTypes] = useState([])
   const [currentPokemon, setCurrentPokemon] = useState(1)
   const [team, setTeam] = useState([])
+  const [sprite, setSprite] = useState('')
 
   useEffect(() => {
     console.log('Pokemon API Called.')
@@ -34,9 +35,10 @@ function App() {
       .then(
         (result) => {
           setIsLoaded(true);
-          setSprite(result.sprites.front_default);
-          setName(capitalizeString(result.species.name));
-          setTypes(result.types);
+          setImage(result.sprites.other['official-artwork'].front_default)
+          setSprite(result.sprites.front_default)
+          setTypes(result.types)
+          setName(capitalizeString(result.species.name))
         }).catch((error) => {
           setCurrentPokemon(1)
           console.log(error) // Modified the structure of the API call in order to catch errors, without stopping web-app.
@@ -75,10 +77,10 @@ function App() {
                       </Paper>
                     ))}
                   </Stack>
-                  <CardMedia component="img" height="300" image={sprite} alt="Loading" />
+                  <CardMedia component="img" height="300" image={image} alt="Loading" />
                 </CardContent>
               </Card>
-              <TeamCard team={team}></TeamCard>
+              <TeamCard team={team} sprite={sprite}></TeamCard>
             </Stack>
           </Grid>
 
@@ -94,7 +96,7 @@ function App() {
                 }
               }}
                 variant="contained">Previous</Button>
-              <Button onClick={() => {
+              <Button onClick={() => { //Maybe turn this into a hash map?
                 const newTeam = team
                 var isIncluded = newTeam.includes(name)
                 var underSix = newTeam.length < 6
