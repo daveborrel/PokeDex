@@ -6,9 +6,11 @@ This is a PokeDex that uses the pokemonAPI to display information about all ~110
 
 ![Loading](demo1.png)
 
-# Libraries Used
+# Technologies Used
 
-* MaterialsUI
+* MaterialsUI (https://mui.com/)
+* Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+* PokemonAPI v2 (https://pokeapi.co/)
 
 
 # User Stories
@@ -17,4 +19,5 @@ This is a PokeDex that uses the pokemonAPI to display information about all ~110
 * Users will be able to type in the name of the pokemon and search for a specific pokemon.
 * Users will be able to add a team of pokemon up to a total of 6.
 * Users will be able to login and see their team of Pokemon.
+* Users will be able to select a team of up 6 pokemon.
 
