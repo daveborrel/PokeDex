@@ -1,10 +1,15 @@
 # Description
 
-This is a PokeDex that uses the pokemonAPI to display information about all ~1100 Pokemon.
+This is a PokeDex that uses the pokemonAPI to display information about all ~1100 Pokemon. There is also an option to build a team of up to 6 Pokemon. Currently developing a database using MongoDB.
+
+# Demo
+
+![Loading](demo1.png)
 
 # Libraries Used
 
 * MaterialsUI
+
 
 # User Stories
 
