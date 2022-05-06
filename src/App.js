@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardMedia, Container } from '@mui/material';
+import { Card, CardContent, CardMedia, Container, Icon } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Stack } from '@mui/material';
@@ -9,6 +9,7 @@ import { Paper } from '@mui/material';
 import NavigationBar from './components/NavigationBar';
 import TeamCard from './components/TeamCard';
 import SearchBar from './components/SearchBar';
+import InfoIcon from '@mui/icons-material/Info';
 
 // Represents the main application.
 function App() {
@@ -82,6 +83,7 @@ function App() {
                     ))}
                   </Stack>
                   <CardMedia component="img" height="300" image={image} alt="Loading" />
+                  <InfoIcon></InfoIcon>
                 </CardContent>
               </Card>
               <TeamCard team={team} sprites={sprites}></TeamCard>
@@ -113,6 +115,7 @@ function App() {
 
               }}
                 variant='contained'>Add to Team</Button>
+              <Button variant="contained">Remove from Team</Button>
               <Button onClick={() => {
                 let temp = currentId + 1
 
