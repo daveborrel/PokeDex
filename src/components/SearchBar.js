@@ -12,7 +12,7 @@ export default function SearchBar(props) {
         
         // Check if string or integer.
         if (isNaN(value)) {
-            console.log('Non-Integer Entered')
+            console.log('Convert this into its id')
             value.toLowerCase()
             props.function(value)
         } else {

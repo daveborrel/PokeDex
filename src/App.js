@@ -14,12 +14,16 @@ import SearchBar from './components/SearchBar';
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [errorState, setErrorState] = useState(false)
-  const [image, setImage] = useState('')
-  const [name, setName] = useState('')
-  const [types, setTypes] = useState([])
   const [currentPokemon, setCurrentPokemon] = useState(1)
-  const [team, setTeam] = useState([])
+  const [currentId, setCurrentId] = useState(1)
+  const [image, setImage] = useState('')
+  const [types, setTypes] = useState([])
+
+  //Team Card States
+  const [name, setName] = useState('')
   const [sprite, setSprite] = useState('')
+  const [team, setTeam] = useState([])
+  const [sprites, setSprites] = useState([])
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${currentPokemon}`)
@@ -35,16 +39,17 @@ function App() {
         (result) => {
           setIsLoaded(true);
           setImage(result.sprites.other['official-artwork'].front_default)
-          setSprite(result.sprites.front_default)
           setTypes(result.types)
           setName(capitalizeString(result.species.name))
-          console.log('PokemonAPI called with: ' + currentPokemon)
+          setSprite(result.sprites.front_default)
+          setCurrentId(result.id)
+          console.log('PokemonAPI called with: ' + currentPokemon + ' and its ID is: ' + currentId)
         }).catch((error) => {
           setCurrentPokemon(1)
           console.log(error) // Modified the structure of the API call in order to catch errors, without stopping web-app.
           setErrorState(true)
         })
-  }, [currentPokemon, team])
+  }, [currentPokemon, team, currentId, sprites])
 
   if (!isLoaded) {
     return <div>Loading...</div>
@@ -79,21 +84,19 @@ function App() {
                   <CardMedia component="img" height="300" image={image} alt="Loading" />
                 </CardContent>
               </Card>
-              <TeamCard team={team} sprite={sprite}></TeamCard>
+              <TeamCard team={team} sprites={sprites}></TeamCard>
             </Stack>
           </Grid>
 
           <Grid>
             <Stack spacing={2} direction='row'>
               <Button onClick={() => {
-                let temp = currentPokemon - 1;
+                let temp = currentId - 1;
                 console.log('temp is: ' + temp)
                 if (temp === 0) {
                   setCurrentPokemon(1);
-                  console.log(currentPokemon)
                 } else {
                   setCurrentPokemon(temp);
-                  console.log(currentPokemon)
                 }
               }}
                 variant="contained">Previous</Button>
@@ -104,13 +107,14 @@ function App() {
 
                 if (!isIncluded && underSix) {
                   setTeam(newTeam => newTeam.concat(name))
+                  setSprites(newSprites => newSprites.concat(sprite))
                   console.log(`added ${name} to team state.`)
                 }
 
               }}
                 variant='contained'>Add to Team</Button>
               <Button onClick={() => {
-                let temp = currentPokemon + 1
+                let temp = currentId + 1
 
                 console.log('Incremented value is: ' + temp)
                 
@@ -141,6 +145,7 @@ function capitalizeString(name) {
   return editedName;
 }
 
+// HashMap of all the Colours for the type.
 const colours = {
   normal: '#A8A77A',
   fire: '#EE8130',
