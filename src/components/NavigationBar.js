@@ -22,7 +22,7 @@ export default function NavigationBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            PokeDex
+            PokeDex and Pokemon Team Builder
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>

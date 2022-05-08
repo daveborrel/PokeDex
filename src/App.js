@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardMedia, Container, Icon } from '@mui/material';
+import { Card, CardContent, CardMedia, Container, } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Stack } from '@mui/material';
@@ -9,7 +9,7 @@ import { Paper } from '@mui/material';
 import NavigationBar from './components/NavigationBar';
 import TeamCard from './components/TeamCard';
 import SearchBar from './components/SearchBar';
-import InfoIcon from '@mui/icons-material/Info';
+import InformationPane from './components/InformationPane';
 
 // Represents the main application.
 function App() {
@@ -83,7 +83,7 @@ function App() {
                     ))}
                   </Stack>
                   <CardMedia component="img" height="300" image={image} alt="Loading" />
-                  <InfoIcon></InfoIcon>
+                  <InformationPane></InformationPane>
                 </CardContent>
               </Card>
               <TeamCard team={team} sprites={sprites}></TeamCard>
@@ -92,41 +92,12 @@ function App() {
 
           <Grid>
             <Stack spacing={2} direction='row'>
-              <Button onClick={() => {
-                let temp = currentId - 1;
-                console.log('temp is: ' + temp)
-                if (temp === 0) {
-                  setCurrentPokemon(1);
-                } else {
-                  setCurrentPokemon(temp);
-                }
-              }}
+              <Button onClick={increasePokemonIndex}
                 variant="contained">Previous</Button>
-              <Button onClick={() => {
-                const newTeam = team
-                var isIncluded = newTeam.includes(name)
-                var underSix = newTeam.length < 6
-
-                if (!isIncluded && underSix) {
-                  setTeam(newTeam => newTeam.concat(name))
-                  setSprites(newSprites => newSprites.concat(sprite))
-                  console.log(`added ${name} to team state.`)
-                }
-
-              }}
+              <Button onClick={addPokemonToTeam}
                 variant='contained'>Add to Team</Button>
               <Button variant="contained">Remove from Team</Button>
-              <Button onClick={() => {
-                let temp = currentId + 1
-
-                console.log('Incremented value is: ' + temp)
-                
-                if (temp > 898) {
-                  setCurrentPokemon(898)
-                } else {
-                  setCurrentPokemon(temp)
-                }
-              }}
+              <Button onClick={decrementPokemonIndex}
                 variant="contained">Next</Button>
             </Stack>
           </Grid>
@@ -134,9 +105,50 @@ function App() {
       </Container>
     );
   }
-}
 
-//Helpers
+  /**
+   * Increases the current PokemonAPI endpoint by 1.
+   */
+  function increasePokemonIndex() {
+    let temp = currentId - 1;
+    console.log('temp is: ' + temp)
+    if (temp === 0) {
+      setCurrentPokemon(1);
+    } else {
+      setCurrentPokemon(temp);
+    }
+  }
+
+  /**
+   * Decreases the current PokemonAPI endpoint by 1.
+   */
+  function decrementPokemonIndex() {
+    let temp = currentId + 1
+  
+    console.log('Incremented value is: ' + temp)
+    
+    if (temp > 898) {
+      setCurrentPokemon(898)
+    } else {
+      setCurrentPokemon(temp)
+    }
+  }
+
+  /**
+   * Adds the current pokemon to the team along with sprite.
+   */
+  function addPokemonToTeam() {
+    const newTeam = team
+    var isIncluded = newTeam.includes(name)
+    var underSix = newTeam.length < 6
+
+    if (!isIncluded && underSix) {
+      setTeam(newTeam => newTeam.concat(name))
+      setSprites(newSprites => newSprites.concat(sprite))
+      console.log(`added ${name} to team state.`)
+    }
+  }
+}
 
 /**
  * capitalize the string
