@@ -11,7 +11,7 @@ import TeamCard from './components/TeamCard';
 import SearchBar from './components/SearchBar';
 import InformationPane from './components/InformationPane';
 
-// Represents the main application.
+// Main Landing Page with All Components.
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [errorState, setErrorState] = useState(false)
@@ -52,6 +52,7 @@ function App() {
         })
   }, [currentPokemon, team, currentId, sprites])
 
+  // Error handling, if API does not call properly.
   if (!isLoaded) {
     return <div>Loading...</div>
   } else {
@@ -86,7 +87,7 @@ function App() {
                   <InformationPane></InformationPane>
                 </CardContent>
               </Card>
-              <TeamCard team={team} sprites={sprites}></TeamCard>
+              <TeamCard team={team} sprites={sprites} teamFunction={setTeam} spriteFunction={setSprites}></TeamCard>
             </Stack>
           </Grid>
 
@@ -96,7 +97,6 @@ function App() {
                 variant="contained">Previous</Button>
               <Button onClick={addPokemonToTeam}
                 variant='contained'>Add to Team</Button>
-              <Button variant="contained">Remove from Team</Button>
               <Button onClick={decrementPokemonIndex}
                 variant="contained">Next</Button>
             </Stack>

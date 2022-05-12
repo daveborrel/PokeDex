@@ -1,10 +1,15 @@
+# Pokedex and Pokemon Team Builder
+
 # Description
 
-This is a PokeDex that uses the pokemonAPI to display information about all ~1100 Pokemon. There is also an option to build a team of up to 6 Pokemon. Currently developing a database using MongoDB.
+This is a PokeDex that uses the pokemonAPI to display information about all 898 Pokemon. There is also an option to build a team of up to 6 Pokemon. I am using Materials UI to build the user interface.
 
-# Demo
+# Screenshots of the Landing Page
 
 ![Loading](demo1.png)
+
+# Status
+I am currently exploring further knowledge of node.js and plan to integrate a NoSQL database using MongoDB Atlas.
 
 # Technologies Used
 
@@ -12,6 +17,8 @@ This is a PokeDex that uses the pokemonAPI to display information about all ~110
 * Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 * PokemonAPI v2 (https://pokeapi.co/)
 
+# Why did I build this?
+I loved watching pokemon growing up and I believe that using the pokemonAPI is good practice as it contains many nested arrays in its JSON resource.
 
 # User Stories
 
@@ -20,4 +27,8 @@ This is a PokeDex that uses the pokemonAPI to display information about all ~110
 * Users will be able to add a team of pokemon up to a total of 6.
 * Users will be able to login and see their team of Pokemon.
 * Users will be able to select a team of up 6 pokemon.
+* Users will be able to delete a pokemon from the list by clicking an Icon (In Progress).
+
+# Credits
+* Dave Borrel
 
