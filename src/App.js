@@ -11,7 +11,11 @@ import TeamCard from './components/TeamCard';
 import SearchBar from './components/SearchBar';
 import InformationPane from './components/InformationPane';
 
-// Main Landing Page with All Components.
+// Need to refactor App into just the components, so I need to make a couple new components.
+// Issue is now where do I need to put the state?
+// (1) PokemonImageCard
+// (2) Navigation Buttons
+
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [errorState, setErrorState] = useState(false)
