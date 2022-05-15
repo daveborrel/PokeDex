@@ -6,8 +6,8 @@ This is a PokeDex that uses the pokemonAPI to display information about all 898 
 
 # Screenshots of the Landing Page
 
-<img src="demo1.png" width="100" height="100">
-<img src="demo2.png" width="100" height="100">
+<img src="demo1.png" width="500">
+<img src="demo2.png" width="500">
 
 # Status
 I am currently exploring further knowledge of node.js and plan to integrate a NoSQL database using MongoDB Atlas.
