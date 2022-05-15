@@ -6,7 +6,8 @@ This is a PokeDex that uses the pokemonAPI to display information about all 898 
 
 # Screenshots of the Landing Page
 
-![Loading](demo1.png)
+![Loading](demo1.png | width=100)
+![Loading](demo2.png | width=100)
 
 # Status
 I am currently exploring further knowledge of node.js and plan to integrate a NoSQL database using MongoDB Atlas.
@@ -16,6 +17,7 @@ I am currently exploring further knowledge of node.js and plan to integrate a No
 * MaterialsUI (https://mui.com/)
 * Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 * PokemonAPI v2 (https://pokeapi.co/)
+* JSON-server (https://www.npmjs.com/package/json-server)
 
 # Why did I build this?
 I loved watching pokemon growing up and I believe that using the pokemonAPI is good practice as it contains many nested arrays in its JSON resource.
